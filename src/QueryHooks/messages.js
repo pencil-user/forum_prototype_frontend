@@ -24,7 +24,7 @@ export const useGetConvosCount = (userid) =>
         async ({ queryKey }) => {
             const [_key, { userid }] = queryKey;
             let result = await fetchWithJWT.get('/api/messages/' + userid)
-            return result.headers['-Unread-Count']
+            return result.headers['X-Unread-Count']
         },
         { refetchInterval: REFETCH_INTERVAL }
     )
