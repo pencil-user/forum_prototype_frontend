@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-//axios.defaults.baseURL = 'https://dusan-forum.herokuapp.com';
+axios.defaults.baseURL = 'https://dusan-forum.herokuapp.com';
 
 export const fetchPlain = axios
 
