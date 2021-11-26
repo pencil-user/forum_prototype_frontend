@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import axios from 'axios'
+import { fetchPlain } from '../../FetchService/FetchService';
 
 function SearchField() {
     const [input, setInput] = useState('')
@@ -18,7 +18,7 @@ function SearchField() {
             if (input.length >= 3 && input != prevInput && status != 'loading') {
                 setPrevInput(input)
                 setStatus('loading')
-                let result = await axios.get('/api/search/' + input + '?offset=0&limit=8')
+                let result = await fetchPlain.get('/api/search/' + input + '?offset=0&limit=8')
 
                 if (result.data) {
                     setData(result.data.map(x => ({ id: x.id, label: x.title })))

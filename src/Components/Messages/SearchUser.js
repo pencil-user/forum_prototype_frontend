@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
-import axios from 'axios'
+
+import { fetchWithJWT } from '../../FetchService/FetchService';
 
 
 function SearchUser({ ref = null }) {
@@ -19,7 +20,7 @@ function SearchUser({ ref = null }) {
             if (input.length >= 3 && input != sentInput && status != 'loading') {
                 setSentInput(input)
                 setStatus('loading')
-                let result = await axios.get('/api/users/?username=' + input + '&offset=0&limit=8')
+                let result = await fetchWithJWT.get('/api/users/?username=' + input + '&offset=0&limit=8')
 
                 if (result.data) {
                     setData(result.data.map(x => ({ id: x.id, label: x.username })))

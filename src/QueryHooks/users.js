@@ -1,5 +1,4 @@
 import { useQuery, useQueryClient, useMutation } from "react-query";
-//import axios from 'axios'
 import { fetchWithJWT } from '../FetchService/FetchService.js'
 
 export function useGetPendingUsers() {

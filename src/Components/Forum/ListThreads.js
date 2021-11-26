@@ -95,17 +95,21 @@ function ThreadLoader({ page, lastPage, setTotal, setIsLoading }) {
 
     useEffect(
         () => {
-            if (page == lastPage && !isLoading) {
+            if (page == lastPage && data?.total && !isLoading && !isError) {
                 setTotal(data.total)
+                setIsLoading(false)
+            }else if(isError)
+            { 
                 setIsLoading(false)
             }
         },
-        [isLoading, data])
+        [isLoading, isError, data])
 
     if (isLoading)
         return (<></>)
 
-
+    if (isError)
+        return (<>there was an error</>)
 
     return data.threads.map(thread =>
         <ShowThreadRow key={thread.id} thread={thread} limit={limit} offset={offset} />

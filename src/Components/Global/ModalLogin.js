@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { LoginUser } from '../../UserService/UserService.js';
 
-import axios from 'axios'
+import { fetchPlain } from '../../FetchService/FetchService.js';
 
 
 
@@ -36,7 +36,7 @@ function FormLogin({ handleClose }) {
 
         setIsSending(true)
         try {
-            let result = await axios.post('/api/login/', data)
+            let result = await fetchPlain.post('/api/login/', data)
             LoginUser(result.data)
             handleClose()
         }

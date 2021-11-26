@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { AddAlert } from '../../AlertService/AlertService.js'
 
-import axios from 'axios'
+import { fetchPlain } from '../../FetchService/FetchService.js';
 
 function ModalRegister({ show, handleClose }) {
 
@@ -45,7 +45,7 @@ function FormRegister({ handleClose }) {
 
         setIsSending(true)
         try {
-            let result = await axios.post('/api/users/', { username: data.username, email: data.email, password: data.password })
+            let result = await fetchPlain.post('/api/users/', { username: data.username, email: data.email, password: data.password })
             handleClose()
             AddAlert('Succesfully registered. Wait for the admin to approve you.', 'warning')
         }
