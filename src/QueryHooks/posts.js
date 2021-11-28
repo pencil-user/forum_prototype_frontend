@@ -22,7 +22,7 @@ export const useGetPostsByThread = (thread_id, currentPage = 1, postsPerPage = 5
             const [_key, { thread_id, offset, limit }] = queryKey;
             let result = await fetchWithJWT.get('/api/posts?thread_id=' + thread_id + '&offset=' + offset + '&limit=' + limit)
 
-            return { total: +result.headers['X-Total'], posts: result.data }
+            return { total: +result.headers['x-total'], posts: result.data }
         }
     )
 

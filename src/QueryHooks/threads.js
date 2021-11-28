@@ -25,7 +25,7 @@ export const useGetThreadPage = (offset, limit) =>
             let result = await fetchWithJWT.get('/api/threads/?offset=' + offset + '&limit=' + limit)
 
             console.log("result", result)
-            return { total: +result.headers['X-Total'], threads: result.data }
+            return { total: +result.headers['x-total'], threads: result.data }
         },
         { refetchInterval: REFETCH_INTERVAL })
 
