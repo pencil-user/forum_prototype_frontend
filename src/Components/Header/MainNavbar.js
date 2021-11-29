@@ -1,7 +1,7 @@
 import React from 'react'
 import {Nav, Navbar} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import {useUser } from '../../UserService/UserService.js';
+import {useUser } from '../../ZustandStore/ZustandStore.js';
 
 import ApproveLink from './ApproveLink.js'
 import MessagesLink from './MessagesLink.js'

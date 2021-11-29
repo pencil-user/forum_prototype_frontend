@@ -2,7 +2,7 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 
-import { useUser } from '../../UserService/UserService.js';
+import { useStore } from '../../ZustandStore/ZustandStore.js';
 import ButtonWithSpin from '../Shared/ButtonWithSpin.js'
 
 import { useGetPendingUsers, useApproveUser, useDeleteUser } from '../../QueryHooks/users.js'
@@ -10,7 +10,7 @@ import { useGetPendingUsers, useApproveUser, useDeleteUser } from '../../QueryHo
 
 function ApprovePage() {
     const history = useHistory();
-    const { user } = useUser()
+    const user = useStore(state => state.User)
 
     if (user.level < 2) {
         history.replace('/')

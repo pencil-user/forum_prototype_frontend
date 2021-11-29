@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { UserStore } from '../../UserService/UserService.js';
+import { useStore } from '../../ZustandStore/ZustandStore.js';
 import MainSpinner from '../Shared/MainSpinner.js'
 import UserHighlight from '../Shared/UserHighlight.js'
 import FormAddMessages from "./FormAddMessages.js"
@@ -18,7 +18,7 @@ async function setRead({ ...data }) {
 
 
 function SingleConvo({ convoid }) {
-    const user = UserStore.useState(s => s);
+    const user = useStore(s => s.User);
     const { data, isLoading } = useGetSingleConvo(user.id, convoid)
     const updateMutation = useMutation(setRead)
 

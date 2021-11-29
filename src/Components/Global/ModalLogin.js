@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
-import { LoginUser } from '../../UserService/UserService.js';
+import { useUser } from '../../ZustandStore/ZustandStore.js';
 
 import { fetchPlain } from '../../FetchService/FetchService.js';
 
@@ -24,6 +24,7 @@ function ModalLogin({ show, handleClose }) {
 
 function FormLogin({ handleClose }) {
     const [isSending, setIsSending] = useState(false);
+    const {LoginUser} = useUser()
     const {
         register,
         handleSubmit,

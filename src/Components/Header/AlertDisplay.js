@@ -1,18 +1,18 @@
 import React from 'react'
-import { AlertStore } from '../../AlertService/AlertService.js'
+import { useStore } from '../../ZustandStore/ZustandStore';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import '../../css/TransitionItem.css'
 
-function AlertDisplay() {
-    const Alerts = AlertStore.useState(s => s.Alerts)
+const msgTypes = {
+    info: 'alert-info',
+    success: 'alert-success',
+    danger: 'alert-danger',
+    warning: 'alert-warning'
+}
 
-    const msgTypes = {
-        info: 'alert-info',
-        success: 'alert-success',
-        danger: 'alert-danger',
-        warning: 'alert-warning'
-    }
+function AlertDisplay() {
+    const Alerts = useStore(s => s.Alerts)
 
     return (
         <div

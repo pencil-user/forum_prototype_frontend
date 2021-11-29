@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 
 import { useForm } from "react-hook-form";
 
-import { AddAlert } from '../../AlertService/AlertService.js'
+import { useStore } from '../../ZustandStore/ZustandStore';
 
 import ButtonWithSpin from '../Shared/ButtonWithSpin.js'
 
@@ -13,6 +13,8 @@ import { useUpdateThread, useCreateThread } from '../../QueryHooks/threads.js'
 
 function FormCreateUpdateThread({ handleClose, defaultValues = {}, id = null, action = 'create' }) {
     const { register, handleSubmit, watch } = useForm({ defaultValues });
+
+    const AddAlert = useStore(state => state.AddAlert)
 
     const createThreadHook = useCreateThread(id)
     const updateThreadHook = useUpdateThread(id)

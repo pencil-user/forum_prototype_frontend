@@ -1,12 +1,12 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
-import { UserStore, LogOut } from '../../UserService/UserService.js';
+import { useUser } from '../../ZustandStore/ZustandStore.js'
 
 import ModalLink from '../Shared/ModalLink.js'
 import UserHighlight from '../Shared/UserHighlight.js'
 
 function UserNav() {
-    const user = UserStore.useState(s => s);
+    const {user, LogOut} = useUser();
 
     if (!user.logged)
         return <>

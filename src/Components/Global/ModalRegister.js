@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 
-import { AddAlert } from '../../AlertService/AlertService.js'
+import { useStore } from '../../ZustandStore/ZustandStore';
 
 import { fetchPlain } from '../../FetchService/FetchService.js';
 
@@ -23,6 +23,7 @@ function ModalRegister({ show, handleClose }) {
 
 function FormRegister({ handleClose }) {
     const [isSending, setIsSending] = useState(false);
+    const AddAlert = useStore(state => state.AddAlert)
     const {
         register,
         handleSubmit,

@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { UserStore } from '../../UserService/UserService.js'
+
+import { useUser } from '../../ZustandStore/ZustandStore.js'
+
 import UserHighlight from '../Shared/UserHighlight.js'
 
 import ButtonWithSpin from '../Shared/ButtonWithSpin.js'
@@ -14,7 +16,7 @@ import { useDeletePost } from '../../QueryHooks/posts.js'
 function ShowPost({ post, thread }) {
     const { isLoading, deletePost } = useDeletePost()
 
-    const User = UserStore.useState()
+    const { user } = useUser()
 
     const history = useHistory()
 
@@ -38,7 +40,7 @@ function ShowPost({ post, thread }) {
             <div className="card-body">
                 <ReactMarkdown children={post.post_body} />
             </div>
-            {(User.logged && (User.level >= 2 || (User.id === post.user_id && !thread.locked))) &&
+            {(user.logged && (user.level >= 2 || (user.id === post.user_id && !thread.locked))) &&
                 <div className="card-footer">
                     <ButtonWithSpin
                         className="btn-primary ml-1 mr-1"

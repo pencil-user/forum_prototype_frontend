@@ -1,27 +1,19 @@
 import React, { useState } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { UserStore } from '../../UserService/UserService.js';
+import { useStore } from '../../ZustandStore/ZustandStore.js';
 import MainSpinner from '../Shared/MainSpinner.js'
 import UserHighlight from '../Shared/UserHighlight.js'
 
 import FormAddMessages from './FormAddMessages.js'
-import { fetchWithJWT } from '../../FetchService/FetchService.js'
 
 import { useGetConvos } from '../../QueryHooks/messages.js'
 
 import SingleConvo from './SingleConvo.js'
 
-//import { useQuery } from "react-query";
 
-async function getConvos({ queryKey }) {
-    const [_key, { userid }] = queryKey;
-    let result = await fetchWithJWT.get('/api/messages/' + userid)
-
-    return result.data
-}
 
 function MessagesPage({ }) {
-    const user = UserStore.useState(s => s);
+    const user = useStore(s => s.User);
 
     const [formVisible, setFormVisible] = useState(false)
 

@@ -2,8 +2,9 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import UserHighlight from '../Shared/UserHighlight.js'
-import { UserStore } from '../../UserService/UserService.js';
 import { fetchWithJWT } from '../../FetchService/FetchService.js'
+import { useStore } from '../../ZustandStore/ZustandStore.js';
+
 
 import { useQueryClient, useMutation } from "react-query";
 
@@ -23,7 +24,7 @@ async function createMessage({ ...data }) {
 }
 
 function FormAddMessage({ handleClose, convo = null, title = null }) {
-    const user = UserStore.useState(s => s);
+    const user = useStore(s => s.User);
 
     const { register, handleSubmit, watch } = useForm({ defaultValues: { title } });
 

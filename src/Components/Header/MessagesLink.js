@@ -1,12 +1,11 @@
 import React from 'react'
 import { Nav, Spinner } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { UserStore } from '../../UserService/UserService.js';
-import { fetchWithJWT } from '../../FetchService/FetchService.js'
+import { useStore } from '../../ZustandStore/ZustandStore.js';
 import { useGetConvosCount } from '../../QueryHooks/messages.js'
 
 function MessagesLink() {
-    const user = UserStore.useState(s => s);
+    const user = useStore(s => s.User);
 
     const { data, isLoading } = useGetConvosCount(user.id);
 
