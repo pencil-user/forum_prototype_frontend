@@ -65,7 +65,7 @@ function SingleConvo({ convoid }) {
         return <MainSpinner margin={false} />
 
     const unreadCardStyle = { 'borderLeftColor': 'orange', 'borderLeftWidth': 4 }
-
+    const myCardStyle = { 'marginLeft': 12, 'backgroundColor': 'Azure' }
 
     return <div style={{ marginLeft: 30 }}>
 
@@ -74,7 +74,10 @@ function SingleConvo({ convoid }) {
                 <div
                     className="card mt-1"
                     key={'single' + x.id}
-                    style={!x.read && x.recipient_id == user.id ? unreadCardStyle : {}}
+                    style={
+                        x.sender_id == user.id ? myCardStyle :
+                            (!x.read ? unreadCardStyle : {})
+                    }
                 >
                     <div
                         className="card-header"
