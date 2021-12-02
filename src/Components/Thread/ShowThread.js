@@ -3,6 +3,7 @@ import { Button, Pagination } from 'react-bootstrap'
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 
 import ShowPost from './ShowPost.js'
+import ThreadButtons from './ThreadMutateControls.js';
 
 import MainSpinner from '../Shared/MainSpinner.js'
 
@@ -29,8 +30,9 @@ function ShowThread() {
 
     return (
         <>
+            <div>#{data.id} | {data.created_on}</div>
             <h2>
-                {data.title} #{data.id}
+                <span>{data.title}</span>
                 <span style={{ 'fontSize': '18px', 'verticalAlign': 'text-top' }}>
                     {!!data.pinned && <span className="badge bg-primary text-light">pinned</span>}
                     {!!data.locked && <span className="badge bg-info text-light">locked</span>}
@@ -83,6 +85,7 @@ function ListPosts({ thread }) {
                     {thread.locked ?
                         <Button variant="primary" className="md-2" disabled>NewPost</Button> :
                         <Button variant="primary" className="md-2" onClick={modalPost}>NewPost</Button>}
+                    <ThreadButtons thread={thread} />
                 </div>
                 <Pagination>
                     {pageComponents}

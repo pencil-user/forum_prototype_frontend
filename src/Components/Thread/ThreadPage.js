@@ -8,6 +8,7 @@ import ModalUpdatePost from './ModalUpdatePost.js'
 
 
 import ShowThread from "./ShowThread.js"
+import ModalUpdateThread from './../Forum/ModalUpdateThread';
 
 
 function ThreadPage() {
@@ -16,7 +17,8 @@ function ThreadPage() {
     return (
         <ModalSwitch modals={[
             { modal: ModalCreatePost, pathname: '/thread/:id/create-post/' },
-            { modal: ModalUpdatePost, pathname: '/thread/:id/update-post/:post_id' }
+            { modal: ModalUpdatePost, pathname: '/thread/:id/update-post/:post_id' },
+            { modal: ModalUpdateThread, pathname: '/thread/:id/update-thread/' }
         ]}
         >
             <Route path="/thread/:id/page/:page">

@@ -67,19 +67,21 @@ export function useUpdateThread(id, offset = null, limit = null) {
     async function lockThread(toggle) {
         await mutateAsync({ id, data: { locked: toggle } })
         queryClient.invalidateQueries('threads')
+        queryClient.invalidateQueries("thread", { id: id })
         if (offset !== null && limit !== null) alterQuery({ locked: toggle })
     }
 
     async function pinThread(toggle) {
         await mutateAsync({ id, data: { pinned: toggle } })
         queryClient.invalidateQueries('threads')
+        queryClient.invalidateQueries("thread", { id: id })
         if (offset !== null && limit !== null) alterQuery({ locked: toggle })
     }
 
     async function updateThread(data) {
         await mutateAsync({ id, data: { title: data.title, thread_body: data.thread_body } })
         queryClient.invalidateQueries('threads')
-        queryClient.invalidateQueries('thread')
+        queryClient.invalidateQueries(["thread", { id: id }])
 
         if (offset !== null && limit !== null) alterQuery(data)
     }
@@ -87,7 +89,7 @@ export function useUpdateThread(id, offset = null, limit = null) {
     return { isLoading, lockThread, pinThread, updateThread }
 }
 
-export function useDeleteThread(id, offset, limit) {
+export function useDeleteThread(id, offset = null, limit = null) {
     const queryClient = useQueryClient()
     const { mutateAsync, isLoading } = useMutation(
         async ({ ...data }) => {
@@ -99,9 +101,11 @@ export function useDeleteThread(id, offset, limit) {
     async function deleteThread() {
         await mutateAsync({ id: id })
         queryClient.invalidateQueries('threads')
-        let previousValues = queryClient.getQueryData(["threads", { limit: limit, offset: offset }]).threads
-        let currentValues = previousValues.filter(x => x.id != id)
-        queryClient.setQueryData(["threads", { limit: limit, offset: offset }], { threads: currentValues })
+        if (offset != null && limit != null) {
+            let previousValues = queryClient.getQueryData(["threads", { limit: limit, offset: offset }]).threads
+            let currentValues = previousValues.filter(x => x.id != id)
+            queryClient.setQueryData(["threads", { limit: limit, offset: offset }], { threads: currentValues })
+        }
     }
 
     return { isLoading, deleteThread }

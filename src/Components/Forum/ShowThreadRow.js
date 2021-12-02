@@ -9,6 +9,7 @@ import {
     useLocation
 } from "react-router-dom";
 
+import ThreadMutateButtons from '../Shared/ThreadMutateButtons.js';
 
 import ButtonWithSpin from '../Shared/ButtonWithSpin.js'
 
@@ -71,44 +72,13 @@ function ShowThreadRow({ thread, offset, limit }) {
                         <ShowThreadCell thread={thread} disabled={status} />
                     </div>
                     <div>
-                        {isAdmin &&
-                            <>
-                                <ButtonWithSpin
-                                    className="btn-primary ml-1 mr-1"
-                                    onClick={clickLock}
-                                    disabled={deleteThreadHook.isLoading || status}
-                                    spinning={status === 'toggleLock'}
-                                    label={thread.locked ? "Unlock" : "Lock"}
-                                />
-                                <ButtonWithSpin
-                                    className="btn-info ml-1 mr-1"
-                                    onClick={clickPin}
-                                    disabled={deleteThreadHook.isLoading || status}
-                                    spinning={status === 'togglePin'}
-                                    label={thread.pinned ? "Unpin" : "Pin"}
-                                />
-
-                            </>
-                        }
-
-                        {isLogged && (isAdmin || user.id === thread.user_id) &&
-
-                            <>
-                                <ButtonWithSpin
-                                    className="btn-warning ml-1 mr-1"
-                                    onClick={clickUpdate}
-                                    disabled={deleteThreadHook.isLoading || status}
-                                    label="Edit"
-                                />
-                                <ButtonWithSpin
-                                    className="btn-danger ml-1 mr-3"
-                                    onClick={clickDelete}
-                                    disabled={status}
-                                    spinning={deleteThreadHook.isLoading}
-                                    label="Delete"
-                                />
-                            </>
-                        }
+                    <ThreadMutateButtons
+                        thread={thread}
+                        clickPin={clickPin}
+                        clickLock={clickLock}
+                        clickUpdate={clickUpdate}
+                        clickDelete={clickDelete}
+                        status={status} />
                     </div>
                 </div>
 
