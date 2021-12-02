@@ -65,7 +65,7 @@ function SingleConvo({ convoid }) {
         return <MainSpinner margin={false} />
 
     const unreadCardStyle = { 'borderLeftColor': 'orange', 'borderLeftWidth': 4 }
-    const myCardStyle = { 'marginLeft': 12, 'backgroundColor': 'Azure' }
+    const myCardStyle = { 'marginLeft': 20, 'backgroundColor': 'Azure' }
 
     return <div style={{ marginLeft: 30 }}>
 
@@ -80,16 +80,11 @@ function SingleConvo({ convoid }) {
                     }
                 >
                     <div
-                        className="card-header"
-                    >
-                        From <UserHighlight id={x.sender_id} user={x.sender_name} level={x.sender_level} />
-                        To <UserHighlight id={x.recipient_id} user={x.recipient_name} level={x.recipient_level} />
-                    </div>
-                    <div
                         className="card-body"
                     >
                         <h5 className="mb-2">{x.title}</h5>
-                        {x.message_body}
+                        <div>{x.message_body}</div>
+                        <div>sent on {x.created_on}</div>
                     </div>
                 </div>
         )}
