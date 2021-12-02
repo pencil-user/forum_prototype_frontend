@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-//axios.defaults.baseURL = 'https://dusan-forum.herokuapp.com';
+axios.defaults.baseURL = 'https://dusan-forum.herokuapp.com';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+//axios.defaults.baseURL = 'http://localhost:3001';
 
 let interceptor = (response) => {
     let key, keys = Object.keys(response.headers);
