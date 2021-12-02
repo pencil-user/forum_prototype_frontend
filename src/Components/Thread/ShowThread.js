@@ -83,8 +83,8 @@ function ListPosts({ thread }) {
             <div className="d-flex justify-content-between">
                 <div>
                     {thread.locked ?
-                        <Button variant="primary" className="md-2" disabled>NewPost</Button> :
-                        <Button variant="primary" className="md-2" onClick={modalPost}>NewPost</Button>}
+                        <Button variant="primary" className="md-2" disabled>New Post</Button> :
+                        <Button variant="primary" className="md-2" onClick={modalPost}>New Post</Button>}
                     <ThreadButtons thread={thread} />
                 </div>
                 <Pagination>
@@ -111,8 +111,8 @@ function ListPosts({ thread }) {
                 <div className="d-flex justify-content-between">
                     <div>
                         {thread.locked ?
-                            <Button variant="primary" className="md-2" disabled>NewPost</Button> :
-                            <Button variant="primary" className="md-2" onClick={modalPost}>NewPost</Button>}
+                            <Button variant="primary" className="md-2" disabled>New Post</Button> :
+                            <Button variant="primary" className="md-2" onClick={modalPost}>New Post</Button>}
                     </div>
                     <Pagination>
                         {pageComponents}
